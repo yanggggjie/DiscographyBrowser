@@ -1,14 +1,16 @@
-import { clsx } from 'clsx'
-import _ from 'lodash-es'
-import Test from './components/Test.tsx'
-import Copy from './components/Copy.tsx'
-
+import Title from './components/Title.tsx'
+import Search from './components/Search.tsx'
+import Board from './components/Board/Board.tsx'
+import { useState } from 'react'
+import { useDebounce } from 'usehooks-ts'
 function Component() {
+  const [searchText, setSearchText] = useState('周杰伦')
+  const debouncedSearchText = useDebounce(searchText, 1000)
   return (
     <div>
-      <Test></Test>
-      <hr />
-      <Copy></Copy>
+      <Title></Title>
+      <Search searchText={searchText} setSearchText={setSearchText}></Search>
+      <Board searchText={debouncedSearchText}></Board>
     </div>
   )
 }

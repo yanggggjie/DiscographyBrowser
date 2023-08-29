@@ -1,11 +1,16 @@
 import { clsx } from 'clsx'
 import _ from 'lodash-es'
-import globalAxios from '../globalAxios.ts'
+import { useEffect } from 'react'
 interface Props {}
-
-function Component({}: Props) {
+import globalAxios from '../globalAxios.ts'
+function Component() {
   async function handleClick() {
-    const res = await globalAxios.get('/artists/4Z8W4fKeB5YxbusRsdQVPb')
+    const res = await globalAxios.get('/search', {
+      params: {
+        q: '杰',
+        type: 'album',
+      },
+    })
     console.log(res.data)
   }
   return (
